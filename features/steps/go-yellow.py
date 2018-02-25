@@ -7,9 +7,9 @@ def step_impl(context):
 
 @when('we open the homepage')
 def step_impl(context):
-    browser = webdriver.Firefox()
-    browser.get('http://localhost:8000')
+    context.browser = webdriver.Firefox()
+    context.browser.get('http://localhost:8000')
 
-@then('the title contains \'go-yellow\'')
-def step_impl(context):
-    assert 'go-yellow' in browser.title
+@then('the title contains "{text}"')
+def step_impl(context, text):
+    assert 'go-yellow' in context.browser.title
