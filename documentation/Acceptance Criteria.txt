@@ -1,3 +1,41 @@
+
+[0]
+As Any User,
+I want the webpages to be as intuitive as possible,
+So that I can easily find what I am looking for.
+
+Feature: Pages show a "search" bar
+
+  Scenario 1: Homepage shows the search bar for a registered user
+    Given I'm a registered user
+    when I open the search page
+    then the page displays a search bar
+
+  Scenario 2: Homepage shows the search bar for a guest user
+    Given I'm a guest, not-registered user
+    when I open the homepage
+    then the page displays a search bar
+
+  Scenario 3: Every page shows a search button for a registered user
+    Given I'm a registered user
+    when I open Any page
+    then the page displays a search icon in the header
+
+  Scenario 4: Every page shows a search button for a guest user
+    Given I'm a guest user
+    when I open Any page
+    then the page displays a search icon in the header
+
+  Scenario 5: Click on the search icon opens the search bar
+    Given I'm a registered user
+    when I click on the search icon
+    then the page displays the search bar
+
+  Scenario 6: Click on the search icon opens the search bar for a guest user
+    Given I'm a guest user
+    when I click on the search icon
+    then the page displays the search bar
+
 [1]
 As Alice,
 I want to search for a drugstore close to my working place,
@@ -61,7 +99,7 @@ Feature: Search text must be at least 3 characters long
     when I input 3 characters in the search box
     then the search should yield the expected results
 
-[1]
+[2]
 As Alice,
 I want to search for the shop called "a name",
 So that I know its telephone number.
@@ -85,7 +123,7 @@ Feature: Consult the phone number in an enterprise's details page.
     and the enterprise's owner did not set the phone number
     then I see '-' in the phone number field
 
-    Scenario 2: Phone number has been set.
+  Scenario 2: Phone number has been set.
     Given I opened the details page of an enterprise
     and the enterprise's owner did set the phone number
     then I see the correct phone number
@@ -94,6 +132,44 @@ Feature: Consult the phone number in an enterprise's details page.
 As Shaun,
 I want to update the contacts of my shop,
 So that my clients can call me even if I just changed my phone number.
+
+Feature: Modify an enterprise's details
+
+  Scenario 1: Owner visits the enterprise's details page
+    Given I'm the enterprise's owner
+    when I visit the details page of my enterprise
+    then the page displays the "update" button
+
+  Scenario 2: Non-owner visits the enterprise's details page
+    Given I'm not the enterprise's owner
+    when I visit the details page
+    then the page does not display the "update" button
+
+  Scenario 3: Owner opens the enterprise's details update page
+    Given I'm the enterprise's owner
+    when I click on the "update" button
+    then I see the "modify details" page
+
+  Scenario 4: Modify details page shows the current details
+    Given I'm on the modify details page
+    then in an input field I see the details that are currently set
+
+  Scenario 5: Modify details page shows a save button
+    Given I'm on the modify details page
+    then I see a save button
+
+  Scenario 6: Modify details page shows a cancel button
+    Given I'm on the modify details page
+    then I see a cancel button
+
+  Scenario 7: Cancel button on modify details page undoes the changes
+    Given I'm on the modify details page
+    when I click on the cancel button
+    then I see the current details in the input boxes
+
+  Scenario 8: Save button on modify details page saves changes
+    Given
+
 
 [4]
 As Shaun,
